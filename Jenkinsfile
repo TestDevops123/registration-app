@@ -26,7 +26,7 @@ sh 'mvn clean packge'
    sh 'mvn test'
     }
   }
-  }
+
  stage('Post-build Notifications') {
             steps {
                 post {
@@ -39,4 +39,4 @@ sh 'mvn clean packge'
             }
         }
 }
-
+}
