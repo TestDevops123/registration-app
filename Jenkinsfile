@@ -28,11 +28,12 @@ sh 'mvn clean packge'
   }
   }
 post {
-        always {
+         failure {
             mail to: 'email@example.com',
                  subject: "Build Notification: ${currentBuild.fullDisplayName}",
                  body: "Check console output at ${env.BUILD_URL} to view build details."
         }
     }
+ 
 }
 
