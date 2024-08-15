@@ -27,13 +27,16 @@ sh 'mvn clean packge'
     }
   }
   }
-post {
-         failure {
-            mail to: 'email@example.com',
-                 subject: "Build Notification: ${currentBuild.fullDisplayName}",
-                 body: "Check console output at ${env.BUILD_URL} to view build details."
+ stage('Post-build Notifications') {
+            steps {
+                post {
+                    failure {
+                        mail to: 'dev-team@example.com',
+                             subject: "Failed Build Notification: ${currentBuild.fullDisplayName}",
+                             body: "The build failed at stage ${STAGE_NAME}. Check console output at ${BUILD_URL}."
+                    }
+                }
+            }
         }
-    }
- 
 }
 
