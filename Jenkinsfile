@@ -1,5 +1,5 @@
 pipeline{
-agent{label 'Jenkins-agent'}
+agent
  tools{
    jdk 'java17'
    maven 'maven3'
@@ -18,7 +18,7 @@ git branch: 'main', url: 'https://github.com/TestDevops123/registration-app'
     }
        stage ("Build application"){
       steps {
-sh 'mvn clean package'
+sh 'mvn clean packge'
       }
     }
     stage("Test application"){
@@ -26,7 +26,13 @@ sh 'mvn clean package'
    sh 'mvn test'
     }
   }
-       
-      }
+  }
+post {
+        always {
+            mail to: 'email@example.com',
+                 subject: "Build Notification: ${currentBuild.fullDisplayName}",
+                 body: "Check console output at ${env.BUILD_URL} to view build details."
+        }
+    }
 }
 
