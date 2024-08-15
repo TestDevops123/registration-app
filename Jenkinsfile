@@ -1,5 +1,5 @@
 pipeline{
- agent any {
+ agent any 
  tools{
    jdk 'java17'
    maven 'maven3'
@@ -29,4 +29,4 @@ sh 'mvn clean package'
        
       }
 }
-}
+
